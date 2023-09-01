@@ -8,20 +8,6 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.image.BufferedImage;
-
-import javax.imageio.ImageIO;
-import java.io.File;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
-
-
-import org.json.JSONObject;
 
 /*
 Dark blue rgb(10, 56, 113);  #0A3871
@@ -32,17 +18,19 @@ Light gray rgb(216, 223, 232);*/
 
 public class Conversor extends JFrame implements ActionListener {
 
-	private JButton botonTemperatura, botonDivisas, botonSalir, botonMenos;
+	private JButton botonTemperatura, botonDivisas, botonDistancia, botonSalir, botonMenos;
 	private	JLabel labelNombre;  
 
 
 	public static Conversor formulario1;
 	public static ConversorBanderas formulario2;
 	public static ConversorDeTemperatura formulario3;
+	public static ConversorDeLongitud formulario4;
 
 	public Conversor() {
-		setLayout(null);
 
+		setLayout(null);
+		new ClaseUtils(this);
 		getContentPane().setBackground(new java.awt.Color(243, 245, 252));
 		UIManager.put("Panel.background", new Color(243, 245, 252));
 		UIManager.put("OptionPane.background", new Color(243, 245, 252));
@@ -52,14 +40,23 @@ public class Conversor extends JFrame implements ActionListener {
 		UIManager.put("Button.font", new Font("Malgun Gothic", Font.BOLD, 12));		
 		UIManager.put("Button.margin", new Insets(2, 2, 2, 2));
 		//UIManager.put("Button.border", BorderFactory.createLineBorder(new Color(23, 61, 125), 3));
-		UIManager.put("Button.border", BorderFactory.createEmptyBorder());;
+		UIManager.put("Button.border", BorderFactory.createEmptyBorder());
+
+
+		ImageIcon iconDis = new ImageIcon("resources/ConversorDis.png");
+		botonDistancia = new JButton("");
+		botonDistancia.setIcon(iconDis);
+		botonDistancia.setVisible(true);
+		botonDistancia.setBounds(315, 70, 120, 120);
+		add(botonDistancia);
+		botonDistancia.addActionListener(this);
 
 		
 		ImageIcon iconTmp = new ImageIcon("resources/ConversorTemperaturaPortada.png");
 		botonTemperatura = new JButton("");
 		botonTemperatura.setIcon(iconTmp);
 		botonTemperatura.setVisible(true);
-		botonTemperatura.setBounds(90, 70, 120, 120);
+		botonTemperatura.setBounds(170, 70, 120, 120);
 		add(botonTemperatura);
 		botonTemperatura.addActionListener(this);
 		
@@ -67,9 +64,10 @@ public class Conversor extends JFrame implements ActionListener {
 		botonDivisas = new JButton("");
 		botonDivisas.setIcon(iconDiv);
 		botonDivisas.setVisible(true);
-		botonDivisas.setBounds(230, 70, 120, 120);
+		botonDivisas.setBounds(20, 70, 120, 120);
 		add(botonDivisas);
 		botonDivisas.addActionListener(this);
+
 
 		ImageIcon iconSalir = new ImageIcon("resources/SalirPortada.png");
 		botonSalir = new JButton("");
@@ -94,15 +92,27 @@ public class Conversor extends JFrame implements ActionListener {
 		labelNombre.setFont(new Font("Malgun Gothic", Font.BOLD, 10)); 
 		add(labelNombre);
 
+		
+
+
+
 	}
 
 	public void actionPerformed(ActionEvent eventoEnMemoria) {
 
-		Object source = eventoEnMemoria.getSource();
+		Object source = eventoEnMemoria.getSource();		
+
+		if (source == botonDistancia) {
+			formulario4.setVisible(true);
+			this.setVisible(false);
+
+
+		}
 
 		if (source == botonTemperatura) {
 			formulario3.setVisible(true);
 			this.setVisible(false);
+			formulario3.updateWeather();
 
 		}
 
@@ -111,6 +121,7 @@ public class Conversor extends JFrame implements ActionListener {
 			this.setVisible(false);
 
 		}
+
 
 		if (source == botonSalir) {
 			System.exit(0);
@@ -159,6 +170,17 @@ public class Conversor extends JFrame implements ActionListener {
 		formulario3.setLocationRelativeTo(null);
 		formulario3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		formulario3.setTitle("Conversor de temperatura");
+
+         	ImageIcon iconFormulario4 = new ImageIcon("resources/ConversorDis.png");		
+		formulario4 = new ConversorDeLongitud();
+		formulario4.setIconImage(iconFormulario4.getImage());
+		formulario4.setUndecorated(true);
+		formulario4.setSize(590, 600);		
+		formulario4.setVisible(false);
+		formulario4.setResizable(false);
+		formulario4.setLocationRelativeTo(null);		
+		formulario4.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		formulario4.setTitle("Conversor de longitud");
 
 	}
 
