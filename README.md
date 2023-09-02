@@ -17,13 +17,11 @@ También se manejan la excepciones de manera gráfica, por ejemplo al no elegir 
 <p align="center" >
      <img width="500" heigth="700" src="https://github.com/CarlosGomezCebrian/Challenge-G5-Back-End-Java-ConversorGraficos/blob/master/resources/ConversorBanderasError.JPG">
 </p>
-
-En el conversor de temperatura se agrega la temperatura que está relacionada a tu ubicación por medio de la Ip, pero si se requiere de mayor precisión también puedes requerir la temperatura por medio de tu código postal.
 <p align="center" >
      <img width="500" heigth="700" src="https://github.com/CarlosGomezCebrian/Challenge-G5-Back-End-Java-ConversorGraficos/blob/master/resources/ConversorBanderasError1.JPG">
 </p>
 
-
+En el conversor de temperatura se agrega la temperatura que está relacionada a tu ubicación por medio de la Ip, pero si se requiere de mayor precisión también puedes requerir la temperatura por medio de tu código postal.
 <p align="center" >
      <img width="500" heigth="600" src="https://github.com/CarlosGomezCebrian/Challenge-G5-Back-End-Java-ConversorGraficos/blob/master/resources/ConversorTemperatura.JPG">
 </p>
